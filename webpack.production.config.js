@@ -7,8 +7,7 @@ module.exports = {
     output: {
         path: __dirname + "/build",//打包后的文件存放的地方
         // filename: "bundle.js"//打包后输出文件的文件名
-        filename: "[name]-[hash].js",//缓存
-        publicPath:'build/' //注意这里哦，分离出来的模块会按这个路径来加载
+        filename: "[name][hash].js",//缓存
     },
     devtool: 'eval-source-map',
     devServer: {
@@ -44,10 +43,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: __dirname + "/app/index.tmpl.html" //new 一个这个插件的实例，并传入相关的参数
         }),
-        new webpack.HotModuleReplacementPlugin(),//热加载插件
+        // new webpack.HotModuleReplacementPlugin(),//热加载插件
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin(),
          // new ExtractTextPlugin("styles.css") 打包生成文件名
-        new ExtractTextPlugin("[name]-[hash].css")
+        new ExtractTextPlugin("[name][hash].css")
     ],
 };
